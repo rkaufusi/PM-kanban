@@ -4,31 +4,29 @@ import './App.css';
 import Task from './components/showTask/showTask.js';
 import CreateTask from './components/createTask/createTask.js'
 import useStyles from './styles.js'
+import TaskColumn from './components/column/taskColumn.js'
+import {useState} from 'react';
+/*     column: String,
+    project: String,
+    progress: String,
+    title: String,
+    description: String, */
 
 function App() {
   const classes = useStyles();
+  const [taskList, setTaskList] = useState([
+    {column: "To Do", project: "React Project", title: "Task 1", dsecription: "Plan out component flow"},
+    {column: "To Do", project: "React Project", title: "Task 2", dsecription: "Draw app look and feel"},
+    {column: "To Do", project: "React Project", title: "Task 3", dsecription: "intiitialize git repo"},
+  ]);
   return (
     <div className="App">
       <Container maxWidth="lg">
         <AppBar className={classes.AppBar} position="static" color="inherit">
           <Typography className={classes.heading} variant="h2" align="center">Tasks</Typography>
         </AppBar>
-        <Grow in>
-          <Container>
-            <Grid container justify="space-between" alignItems="stetch">
-              <Grid item xs={12} sm={7}>
-                <AppBar className={classes.appBar} position="static" color="inherit">
-                  <Task />
-                </AppBar>
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <AppBar className={classes.appBar} position="static" color="inherit">
-                  <CreateTask />
-                </AppBar>
-              </Grid>
-            </Grid>
-          </Container>
-        </Grow>
+        <TaskColumn tasksList={taskList}/>
+        
       </Container>
     </div>
   );
