@@ -6,6 +6,8 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {useEffect} from 'react';
+import Icons from './icons.js';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 const bull = (
   <Box
@@ -16,31 +18,23 @@ const bull = (
   </Box>
 );
 
-export default function TaskCard({taskInfo}) {
-    console.log("taskInfo " + taskInfo);
+export default function TaskCard({info, desc}) {
+    console.log("info " + info);
 
   return (
       <>
     <Card sx={{ minWidth: 100 }}>
         <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        {"title " + taskInfo}
-       </Typography>
        <Typography variant="h5" component="div">
-         be{bull}nev{bull}o{bull}lent
-       </Typography>
-       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-         adjective
+         {info}
        </Typography>
        <Typography variant="body2">
-         well meaning and kindly.
-         <br />
-         {'"a benevolent smile"'}
+         {desc}
        </Typography>
        </CardContent>
 
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button><AddOutlinedIcon/></Button>
       </CardActions>
     </Card>
     </>

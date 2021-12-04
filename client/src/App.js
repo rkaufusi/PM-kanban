@@ -15,9 +15,9 @@ import {useState} from 'react';
 function App() {
   const classes = useStyles();
   const [taskList, setTaskList] = useState([
-    {column: "To Do", project: "React Project", title: "Task 1", dsecription: "Plan out component flow"},
-    {column: "To Do", project: "React Project", title: "Task 2", dsecription: "Draw app look and feel"},
-    {column: "To Do", project: "React Project", title: "Task 3", dsecription: "intiitialize git repo"},
+    {column: "To Do", project: "React Project", title: "Task 1", description: "Plan out component flow"},
+    {column: "To Do", project: "React Project", title: "Task 2", description: "Draw app look and feel"},
+    {column: "To Do", project: "React Project", title: "Task 3", description: "intiitialize git repo"},
   ]);
   return (
     <div className="App">
