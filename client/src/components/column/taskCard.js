@@ -5,9 +5,11 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import Icons from './icons.js';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import TaskModal from '../modal/modal.js';
+import Popup from '../modal/popup.js';
 
 const bull = (
   <Box
@@ -18,12 +20,15 @@ const bull = (
   </Box>
 );
 
+
 export default function TaskCard({info, desc}) {
-    console.log("info " + info);
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
 
   return (
       <>
-    <Card sx={{ minWidth: 100 }}>
+      <Card sx={{ minWidth: 100 }}>
         <CardContent>
        <Typography variant="h5" component="div">
          {info}
@@ -32,11 +37,14 @@ export default function TaskCard({info, desc}) {
          {desc}
        </Typography>
        </CardContent>
-
       <CardActions>
-        <Button><AddOutlinedIcon/></Button>
+        <Button onClick={handleOpen}><AddOutlinedIcon/></Button>
+
       </CardActions>
+      {open && <Popup openPopup={open} setPopupOpen={setOpen}
+      />}
     </Card>
+
     </>
   );
 }
