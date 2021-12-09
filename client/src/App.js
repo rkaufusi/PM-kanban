@@ -6,6 +6,8 @@ import CreateTask from './components/createTask/createTask.js'
 import useStyles from './styles.js'
 import TaskColumn from './components/column/taskColumn.js'
 import {useState} from 'react';
+import MyAppBar from './components/table/menu.js';
+
 /*     column: String,
     project: String,
     progress: String,
@@ -14,6 +16,7 @@ import {useState} from 'react';
 
 function App() {
   const classes = useStyles();
+  
   const [taskList, setTaskList] = useState([
     {column: "To Do", project: "React Project", title: "Task 1", description: "Plan out component flow"},
     {column: "To Do", project: "React Project", title: "Task 2", description: "Draw app look and feel"},
@@ -22,10 +25,8 @@ function App() {
   return (
     <div className="App">
       <Container maxWidth="lg">
-        <AppBar className={classes.AppBar} position="static" color="inherit">
-          <Typography className={classes.heading} variant="h2" align="center">Tasks</Typography>
-        </AppBar>
-        <TaskColumn tasksList={taskList}/>
+      <MyAppBar tasksList={taskList}/>
+        
         
       </Container>
     </div>

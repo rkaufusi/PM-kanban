@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography';
 import {useEffect, useState} from 'react';
 import Icons from './icons.js';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import TaskModal from '../modal/modal.js';
 import Popup from '../modal/popup.js';
+
 
 const bull = (
   <Box
@@ -20,11 +20,10 @@ const bull = (
   </Box>
 );
 
-
 export default function TaskCard({info, desc}) {
 
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => setOpen(!open);
 
   return (
       <>
@@ -39,12 +38,13 @@ export default function TaskCard({info, desc}) {
        </CardContent>
       <CardActions>
         <Button onClick={handleOpen}><AddOutlinedIcon/></Button>
-
       </CardActions>
-      {open && <Popup openPopup={open} setPopupOpen={setOpen}
-      />}
+      {
+        open && <Popup onClick={handleOpen} openPopup={open} info={info} desc={desc}>
+          
+        </Popup>
+      }
     </Card>
-
     </>
   );
 }

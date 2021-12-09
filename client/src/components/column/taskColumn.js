@@ -5,7 +5,8 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import TaskCard from './taskCard.js';
 import {useState, useEffect} from 'react';
-import CreateTask from '../createTask/createTask.js'
+import CreateTask from '../createTask/createTask.js';
+import TaskTable from '../table/table.js'
 
 
 
@@ -26,12 +27,9 @@ export default function TaskColumn({tasksList}) {
     console.log(value.title + ": " + value.description);
     return (
       <>
-        <Grid item xs={12}>
-          <Item>
-            <TaskCard info={value.title} desc={value.description}/>
-          </Item>   
-        </Grid>
-        
+        <Item>
+          <TaskCard info={value.title} desc={value.description}/>
+        </Item>   
     </>
     )
   }) 
@@ -42,21 +40,21 @@ export default function TaskColumn({tasksList}) {
         <Grid item xs={4}>
           <h4>To Do</h4>
             {valsMapped}
-
-            <Grid item xs={12}>
               <Item>
-                <TaskCard info='Create New Task'/>
+                <TaskCard info='New Task'/>
               </Item>
-            </Grid>
-        </Grid>
-
-        <Grid item xs={4}>
-        <h4>Doing</h4>
-          <Item>Task 3</Item>
         </Grid>
         <Grid item xs={4}>
-        <h4>Finished</h4>
-        <Item>Task 4</Item>
+          <h4>Doing</h4>  
+            <Item>
+              <TaskCard info='New Task'/>
+            </Item>  
+        </Grid>
+        <Grid item xs={4}>
+          <h4>Finished</h4>
+            <Item>
+              <TaskCard info='New Task'/>
+            </Item>  
         </Grid>
       </Grid>
     </Box>

@@ -1,19 +1,22 @@
-import { Dialog, DialogContent, DialogTitle } from '@mui/material';
-import React from 'react'
+import { Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import {React, useState} from 'react'
+import TaskForm from '../column/taskForm.js';
 
-const Popup = ({openPopup, setOpenPopup}) => {
+
+const Popup = ({openPopup, onClick, info, desc}) => {
     console.log(openPopup);
+    //const [edit, setEdit] = useState(false);
+    //const changeEdit = setEdit(!edit);
     //const [column, project, progress, title, description, open, setOpen] = props;
     return (
-        <Dialog open={openPopup}>
-            <DialogTitle>
-                Title
-            </DialogTitle>
-            <DialogContent>
-                Description
-            </DialogContent>
+
+        <Dialog onClose={onClick} open={openPopup}>
+            <TaskForm info={info} desc={desc}/>
         </Dialog>
+
+  
     )
 }
 
 export default Popup
+
