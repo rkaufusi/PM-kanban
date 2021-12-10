@@ -10,7 +10,6 @@ import Icons from './icons.js';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import Popup from '../modal/popup.js';
 
-
 const bull = (
   <Box
     component="span"

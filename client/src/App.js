@@ -27,7 +27,6 @@ function App() {
       <Container maxWidth="lg">
       <MyAppBar tasksList={taskList}/>
         
-        
       </Container>
     </div>
   );

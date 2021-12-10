@@ -9,7 +9,6 @@ import CreateTask from '../createTask/createTask.js';
 import TaskTable from '../table/table.js'
 
 
-
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -21,7 +20,6 @@ export default function TaskColumn({tasksList}) {
   tasksList.map((value) => {
     console.log(value.title + ": " + value.description);
   })
-
 
   const valsMapped = tasksList.map((value) => {
     console.log(value.title + ": " + value.description);
