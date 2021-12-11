@@ -8,28 +8,25 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import Popup from '../modal/popup.js';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { Button } from '@mui/material';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
 export default function TaskTable({tasksList}) {
-  const [open, setOpen] = useState(false);
-  const handleOpen = (arr) => {
-    setOpen(!open); 
-    setPassThrough(arr);
+  const taskObject = {
+    title: "",
+    desc: ""
   }
-  const [passThrough, setPassThrough] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  const [passThroughVal, setPassThroughVal] = useState(taskObject);
+
+  const handleOpen = (titleVal, descVal) => {
+    setOpen(!open); 
+    setPassThroughVal({title: titleVal, desc: descVal});
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -37,6 +34,7 @@ export default function TaskTable({tasksList}) {
           <TableRow>
             <TableCell>Task Name</TableCell>
             <TableCell align="left">Description</TableCell>
+            <TableCell align="left">Status</TableCell>
             <TableCell align="right">View Task</TableCell>
 
           </TableRow>
@@ -51,10 +49,11 @@ export default function TaskTable({tasksList}) {
                 {row.title}
               </TableCell>
               <TableCell align="left">{row.description}</TableCell>
+              <TableCell align="left">{row.status}</TableCell>
               <TableCell align="right">
-                <Button onClick={() => handleOpen([row.title, row.description])} ><AddOutlinedIcon/>              
+                <Button onClick={() => handleOpen(row.title, row.description)}><AddOutlinedIcon/>              
                 {
-                  open && <Popup onClick={handleOpen} openPopup={open} passThrough={passThrough} info={passThrough[0]} desc={passThrough[1]}>
+                  open && <Popup onClick={handleOpen} openPopup={open} info={passThroughVal.title} desc={passThroughVal.desc}>
                   </Popup>
                 }</Button>
 
@@ -68,8 +67,9 @@ export default function TaskTable({tasksList}) {
               New Task
             </TableCell>
             <TableCell align="left"></TableCell>
+            <TableCell align="left"></TableCell>
             <TableCell align="right">
-              <Button onClick={handleOpen}><AddOutlinedIcon/></Button>
+              <Button onClick={() => handleOpen('', '')}><AddOutlinedIcon/></Button>
             </TableCell>
           </TableRow>
         </TableBody>

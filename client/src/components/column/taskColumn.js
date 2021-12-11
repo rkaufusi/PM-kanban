@@ -17,20 +17,22 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function TaskColumn({tasksList}) {
-  tasksList.map((value) => {
-    console.log(value.title + ": " + value.description);
-  })
+
 
   const valsMapped = tasksList.map((value) => {
-    console.log(value.title + ": " + value.description);
+    console.log(value.title + ": " + value.description + " " + value.status);
     return (
       <>
         <Item>
-          <TaskCard info={value.title} desc={value.description}/>
+          <TaskCard info={value.title} desc={value.description} status={value.column}/>
+          {console.log(value.column)}
         </Item>   
+        
     </>
     )
   }) 
+
+  
   
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -39,19 +41,19 @@ export default function TaskColumn({tasksList}) {
           <h4>To Do</h4>
             {valsMapped}
               <Item>
-                <TaskCard info='New Task'/>
+                <TaskCard info='New Task' status="To Do"/>
               </Item>
         </Grid>
         <Grid item xs={4}>
           <h4>Doing</h4>  
             <Item>
-              <TaskCard info='New Task'/>
+              <TaskCard info='New Task' status="Doing"/>
             </Item>  
         </Grid>
         <Grid item xs={4}>
           <h4>Finished</h4>
             <Item>
-              <TaskCard info='New Task'/>
+              <TaskCard info='New Task' status="Finished"/>
             </Item>  
         </Grid>
       </Grid>

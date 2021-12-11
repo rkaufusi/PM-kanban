@@ -19,7 +19,8 @@ const bull = (
   </Box>
 );
 
-export default function TaskCard({info, desc}) {
+export default function TaskCard({info, desc, status}) {
+  console.log(status);
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
@@ -39,7 +40,7 @@ export default function TaskCard({info, desc}) {
         <Button onClick={handleOpen}><AddOutlinedIcon/></Button>
       </CardActions>
       {
-        open && <Popup onClick={handleOpen} openPopup={open} info={info} desc={desc}>
+        open && <Popup onClick={handleOpen} openPopup={open} info={info} desc={desc} status={status}>
           
         </Popup>
       }

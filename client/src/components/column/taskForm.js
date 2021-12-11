@@ -1,11 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Description from './description.js'
+import Description from './description.js';
 import { Button } from '@mui/material';
-import SaveButton from './saveButton.js'
+import SaveButton from './saveButton.js';
+import TaskStatus from './taskStatus.js';
 
-export default function TaskForm({info, desc}) {
+export default function TaskForm({info, desc, status}) {
+
   return (
     <Box
       component="form"
@@ -15,7 +17,7 @@ export default function TaskForm({info, desc}) {
       noValidate
       autoComplete="off"
     >{info !== 'Create New Task' ? <TextField id="filled-basic" label="Title" variant="filled" defaultValue={info}/> : <TextField id="filled-basic" label="Title" variant="filled" />}
-      
+      <TaskStatus status={status}/>
       
       <Description desc={desc}/>
       <SaveButton/>
