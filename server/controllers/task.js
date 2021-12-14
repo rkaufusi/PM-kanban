@@ -2,7 +2,7 @@ import taskModel from '../models/taskModel.js'
 
 export const getTasks = async (req, res) => {
     try {
-        const allTasks = await task.find();
+        const allTasks = await taskModel.find();
 
         res.status(200).json(allTasks);
     } catch (error) {
