@@ -20,20 +20,18 @@ export default function TaskColumn({tasksList}) {
 
 
   const valsMapped = tasksList.map((value) => {
-    console.log(value.title + ": " + value.description + " " + value.status);
+    console.log(value.description);
+
     return (
       <>
         <Item>
           <TaskCard idVal={value._id} info={value.title} desc={value.description} status={value.column}/>
           {console.log(value.column)}
         </Item>   
-        
     </>
     )
   }) 
 
-  
-  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={4}>

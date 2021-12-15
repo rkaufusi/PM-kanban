@@ -20,30 +20,27 @@ const bull = (
 );
 
 export default function TaskCard({idVal, info, desc, status}) {
-  console.log(status);
-
+  
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
 
+  if(!desc) desc = '';
+  console.log(desc);
   return (
       <>
       <Card sx={{ minWidth: 100 }}>
         <CardContent>
-       <Typography variant="h5" component="div">
-         {info}
-       </Typography>
-       <Typography variant="body2">
-         {desc}
-       </Typography>
-       </CardContent>
-      <CardActions>
-        <Button onClick={handleOpen}><AddOutlinedIcon/></Button>
-      </CardActions>
-      {
-        open && <Popup onClick={handleOpen} openPopup={open} info={info} desc={desc} status={status} idVal={idVal}>
-          
-        </Popup>
-      }
+          <Typography variant="h5" component="div">
+            {info}
+          </Typography>
+        <Typography variant="body2">{desc === '' || desc.length < 45 ? desc : desc.substring(0, 45) + '...'}</Typography> 
+
+        </CardContent>
+        <CardActions>
+          <Button onClick={handleOpen}><AddOutlinedIcon/></Button>
+        </CardActions>
+      {open && <Popup onClick={handleOpen} openPopup={open} info={info} desc={desc} status={status} idVal={idVal}>
+        </Popup>}
     </Card>
     </>
   );
