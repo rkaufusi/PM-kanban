@@ -19,13 +19,15 @@ export default function TaskFormNew({info, desc, status}) {
     description: desc
   })
 
-    console.log(desc);
+    console.log(task.column, task.project, task.title, task.description);
 
 
 
   const createTask = () => {
     axios.post('http://localhost:5000/tasks', task)
   }
+
+/* <Description desc={task.description} onChange={(event) => setTask({...task, description: event.target.value})}/>*/
 
   return (
     <Box
@@ -38,7 +40,30 @@ export default function TaskFormNew({info, desc, status}) {
     ><TextField id="filled-basic" label="Title" variant="filled" defaultValue={task.title} onChange={(event) => setTask({...task, title: event.target.value})}/> 
     <TaskStatus status={task.column} onChange={(event) => setTask({...task, column: event.target.value})}/>
       
-      <Description desc={task.description} onChange={(event) => setTask({...task, description: event.target.value})}/>
+      
+      <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: .1, width: '50ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+ 
+      <div>
+        <TextField
+          fullWidth
+          id="filled-multiline-static"
+          label="Description"
+          multiline
+          rows={8}
+          variant="filled"
+          defaultValue={task.description}
+          onChange={(event) => setTask({...task, description: event.target.value})}
+        />
+      </div>
+      
+    </Box>
       <Stack spacing={2} direction="row">
         <Button variant="contained" onClick={createTask}>Save</Button>
         </Stack>

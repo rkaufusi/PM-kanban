@@ -9,6 +9,8 @@ export default function Description({desc}) {
     setValue(event.target.value);
   };
 
+  console.log(value)
+
   return (
     <Box
       component="form"
@@ -28,6 +30,7 @@ export default function Description({desc}) {
           rows={8}
           variant="filled"
           defaultValue={desc}
+          onChange={(event) => setValue({description: event.target.value})}
         />
       </div>
       

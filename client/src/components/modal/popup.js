@@ -4,11 +4,11 @@ import TaskForm from '../column/taskForm.js';
 import TaskFormNew from '../column/taskFormNew.js';
 
 
-const Popup = ({openPopup, onClick, info, desc, status}) => {
+const Popup = ({openPopup, onClick, info, desc, status, idVal}) => {
 
     return (
         <Dialog onClose={onClick} open={openPopup}>
-        {info !== 'New Task' ? <TaskForm info={info} desc={desc} status={status}/> : <TaskFormNew info='' desc='' status={status}/>}
+        {info !== 'New Task' ? <TaskForm idVal={idVal} info={info} desc={desc} status={status}/> : <TaskFormNew info='' desc='' status={status}/>}
             
         </Dialog>
     )

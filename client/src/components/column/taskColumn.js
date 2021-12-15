@@ -24,7 +24,7 @@ export default function TaskColumn({tasksList}) {
     return (
       <>
         <Item>
-          <TaskCard info={value.title} desc={value.description} status={value.column}/>
+          <TaskCard idVal={value._id} info={value.title} desc={value.description} status={value.column}/>
           {console.log(value.column)}
         </Item>   
         
