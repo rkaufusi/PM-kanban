@@ -10,23 +10,31 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import Popup from '../modal/popup.js';
 import {useState, useEffect} from 'react';
 import { Button } from '@mui/material';
-
-
+import TaskStatus from '../column/taskStatus.js';
 
 export default function TaskTable({tasksList}) {
   const taskObject = {
     title: "",
-    desc: ""
+    desc: "",
+    idVal: "",
+    column: ""
   }
+  const [testVal, setTestVal] = useState(tasksList);
+  console.log(testVal);
   const [open, setOpen] = useState(false);
-
   const [passThroughVal, setPassThroughVal] = useState(taskObject);
 
-  const handleOpen = (titleVal, descVal) => {
-    setOpen(!open); 
-    setPassThroughVal({title: titleVal, desc: descVal});
+  const handleOpen = (titleVal, descVal, idVal, column) => {
+    if(titleVal !== 'New Task') {
+      setPassThroughVal({title: titleVal, desc: descVal, idVal: idVal, column: column});
+    } else {
+      setPassThroughVal({title: '', desc: ''});
+    }
+    setOpen(!open);
   }
 
+//() => handleOpen(row.title, row.description, row._id, row.column
+  //const handleOpen = () => setOpen(!open);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -34,7 +42,7 @@ export default function TaskTable({tasksList}) {
           <TableRow>
             <TableCell>Task Name</TableCell>
             <TableCell align="left">Description</TableCell>
-            <TableCell align="left">Status</TableCell>
+            <TableCell align="left">Column</TableCell>
             <TableCell align="right">View Task</TableCell>
 
           </TableRow>
@@ -48,18 +56,16 @@ export default function TaskTable({tasksList}) {
               <TableCell component="th" scope="row">
                 {row.title}
               </TableCell>
-              <TableCell align="left">{row.description}</TableCell>
-              <TableCell align="left">{row.status}</TableCell>
+              <TableCell align="left">{row.description === '' || row.description.length < 45 ? row.description : row.description.substring(0, 45) + '...'}</TableCell>
+              <TableCell align="left">{row.column}</TableCell>
               <TableCell align="right">
-                <Button onClick={() => handleOpen(row.title, row.description)}><AddOutlinedIcon/>              
+                <Button onClick={() => handleOpen(row.title, row.description, row._id, row.column)}><AddOutlinedIcon/> </Button>             
                 {
-                  open && <Popup onClick={handleOpen} openPopup={open} info={passThroughVal.title} desc={passThroughVal.desc}>
+                  open && <Popup onClick={handleOpen} openPopup={open} info={passThroughVal.title} desc={passThroughVal.desc} idVal={passThroughVal.idVal} status={passThroughVal.column}>
                   </Popup>
-                }</Button>
-
+                }
               </TableCell>
-              {console.log("test " + row.title)}
-
+              {console.log("test " + open)}
             </TableRow>
           ))}
           <TableRow>          

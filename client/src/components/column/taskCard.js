@@ -39,8 +39,7 @@ export default function TaskCard({idVal, info, desc, status}) {
         <CardActions>
           <Button onClick={handleOpen}><AddOutlinedIcon/></Button>
         </CardActions>
-      {open && <Popup onClick={handleOpen} openPopup={open} info={info} desc={desc} status={status} idVal={idVal}>
-        </Popup>}
+          {open && <Popup onClick={handleOpen} openPopup={open} info={info} desc={desc} status={status} idVal={idVal}/>}
     </Card>
     </>
   );

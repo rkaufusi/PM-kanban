@@ -21,7 +21,6 @@ export default function TaskColumn({tasksList}) {
 
   const valsMapped = tasksList.map((value) => {
     console.log(value.description);
-
     return (
       <>
         <Item>
