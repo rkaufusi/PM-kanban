@@ -23,6 +23,7 @@ function App() {
     {column: "To Do", project: "React Project", title: "Task 3", description: "intiitialize git repo"},
   ]); */
   const [taskList, setTaskList] = useState([]);
+  
   useEffect(() => {
     axios.get('http://localhost:5000/tasks').then((allTasks) => {
       setTaskList(allTasks.data);

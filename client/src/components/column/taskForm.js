@@ -20,13 +20,22 @@ export default function TaskForm({info, desc, status, idVal}) {
     taskId: idVal
   })
 
-  console.log(task.description);
 
   const deleteTask = (id) => {
+    console.log(`deleted ${idVal}`);
     axios.delete(`http://localhost:5000/tasks/${id}`).then(() => {
       console.log(`deleted ${idVal}`);
-      window.location.reload(false);
+      //window.location.reload(false);
     })
+  }
+
+  const updateTask = (id, col, desc, proj, title) => {
+    try {
+      axios.put(`http://localhost:5000/tasks/${id}`, {column: col, project: proj, title: title, description: desc});
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 
   return (
@@ -67,7 +76,7 @@ export default function TaskForm({info, desc, status, idVal}) {
     <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={1}>
     <Grid item xs={4}>
-      <SaveButton/>
+      <SaveButton onClick={() => updateTask(task.taskId, task.column, task.description, task.project, task.title)}/>
     </Grid>
     <Grid item xs={4}>
       <DeleteButton onClick={() => deleteTask(task.taskId)}/>
