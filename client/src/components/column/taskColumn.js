@@ -19,16 +19,38 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function TaskColumn({tasksList}) {
 
 
-  const valsMapped = tasksList.map((value) => {
-    console.log(value.description);
-    return (
-      <>
-        <Item>
-          <TaskCard idVal={value._id} info={value.title} desc={value.description} status={value.column}/>
-          {console.log(value.column)}
-        </Item>   
-    </>
-    )
+  const valsMappedToDo = tasksList.map((value) => {
+    if(value.column === 'To Do'){
+      return (
+        <>
+          <Item>
+            <TaskCard idVal={value._id} info={value.title} desc={value.description} status={value.column}/>
+          </Item>   
+      </>
+      )
+    }
+  }) 
+  const valsMappedDoing = tasksList.map((value) => {
+    if(value.column === 'Doing'){
+      return (
+        <>
+          <Item>
+            <TaskCard idVal={value._id} info={value.title} desc={value.description} status={value.column}/>
+          </Item>   
+      </>
+      )
+    }
+  }) 
+  const valsMappedFinished = tasksList.map((value) => {
+    if(value.column === 'Finished'){
+      return (
+        <>
+          <Item>
+            <TaskCard idVal={value._id} info={value.title} desc={value.description} status={value.column}/>
+          </Item>   
+      </>
+      )
+    }
   }) 
 
   return (
@@ -36,19 +58,21 @@ export default function TaskColumn({tasksList}) {
       <Grid container spacing={4}>
         <Grid item xs={4}>
           <h4>To Do</h4>
-            {valsMapped}
+            {valsMappedToDo}
               <Item>
                 <TaskCard info='New Task' status="To Do"/>
               </Item>
         </Grid>
         <Grid item xs={4}>
           <h4>Doing</h4>  
+          {valsMappedDoing}
             <Item>
               <TaskCard info='New Task' status="Doing"/>
             </Item>  
         </Grid>
         <Grid item xs={4}>
           <h4>Finished</h4>
+          {valsMappedFinished}
             <Item>
               <TaskCard info='New Task' status="Finished"/>
             </Item>  

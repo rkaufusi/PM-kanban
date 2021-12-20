@@ -10,6 +10,10 @@ import DeleteButton from './deleteButton.js';
 import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
+//
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 export default function TaskForm({info, desc, status, idVal}) {
   const [task, setTask] = useState({
@@ -20,6 +24,7 @@ export default function TaskForm({info, desc, status, idVal}) {
     taskId: idVal
   })
 
+  // <TaskStatus status={task.column} onChange={(event) => setTask({...task, column: event.target.value})}/>
 
   const deleteTask = (id) => {
     console.log(`deleted ${idVal}`);
@@ -31,6 +36,7 @@ export default function TaskForm({info, desc, status, idVal}) {
 
   const updateTask = (id, col, desc, proj, title) => {
     try {
+      console.log(`column for databse ${col}`)
       axios.put(`http://localhost:5000/tasks/${id}`, {column: col, project: proj, title: title, description: desc});
     } catch (error) {
       console.log(error);
@@ -47,8 +53,27 @@ export default function TaskForm({info, desc, status, idVal}) {
       }}
       noValidate
       autoComplete="off"
-    ><TextField id="filled-basic" label="Title" variant="filled" defaultValue={task.title} onChange={(event) => setTask({...task, title: event.target.value})}/>
-    <TaskStatus status={task.column} onChange={(event) => setTask({...task, column: event.target.value})}/>
+    >
+    <TextField id="filled-basic" label="Title" variant="filled" defaultValue={task.title} onChange={(event) => setTask({...task, title: event.target.value})}/>
+    
+    <div>
+      <FormControl variant="filled" sx={{ m: .1, minWidth: 120 }}>
+        <InputLabel id="demo-simple-select-filled-label">{task.column}</InputLabel>
+        <Select
+          labelId="demo-simple-select-filled-label"
+          id="demo-simple-select-filled"
+          status={task.column}
+          onChange={(event) => setTask({...task, column: event.target.value})}
+        >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+          <MenuItem value='To Do'>To Do</MenuItem>
+          <MenuItem value='Doing'>Doing</MenuItem>
+          <MenuItem value='Done'>Done</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
       
       <Box
       component="form"
