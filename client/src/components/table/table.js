@@ -39,7 +39,7 @@ export default function TaskTable({tasksList}) {
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow sx={{bgcolor: "#CFE2F3"}}>
             <TableCell>Task Name</TableCell>
             <TableCell align="left">Description</TableCell>
             <TableCell align="left">Column</TableCell>

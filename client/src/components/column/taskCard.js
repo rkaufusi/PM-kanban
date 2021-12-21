@@ -28,7 +28,7 @@ export default function TaskCard({idVal, info, desc, status}) {
   console.log(desc);
   return (
       <>
-      <Card sx={{ minWidth: 100 }}>
+      <Card sx={{ minWidth: 100, bgcolor: "#CFE2F3" }}>
         <CardContent>
           <Typography variant="h5" component="div">
             {info}

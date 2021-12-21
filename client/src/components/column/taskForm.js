@@ -30,7 +30,7 @@ export default function TaskForm({info, desc, status, idVal}) {
     console.log(`deleted ${idVal}`);
     axios.delete(`http://localhost:5000/tasks/${id}`).then(() => {
       console.log(`deleted ${idVal}`);
-      //window.location.reload(false);
+      window.location.reload(false);
     })
   }
 
@@ -41,6 +41,7 @@ export default function TaskForm({info, desc, status, idVal}) {
     } catch (error) {
       console.log(error);
     }
+    window.location.reload(false);
     
   }
 
